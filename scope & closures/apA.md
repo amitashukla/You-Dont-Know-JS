@@ -7,7 +7,7 @@ We will briefly examine dynamic scope, to hammer home the contrast. But, more im
 
 As we saw in Chapter 2, lexical scope is the set of rules about how the *Engine* can look-up a variable and where it will find it. The key characteristic of lexical scope is that it is defined at author-time, when the code is written (assuming you don't cheat with `eval()` or `with`).
 
-Dynamic scope seems to imply, and for good reason, that there's a model whereby scope can be determined dynamically at runtime, rather than statically at author-time. That is in fact the case. Let's illustrate via code:
+<span style="color:#AF7AC5">**Dynamic scope seems to imply, and for good reason, that there's a model whereby scope can be determined dynamically at runtime, rather than statically at author-time.**</span> That is in fact the case. Let's illustrate via code:
 
 ```js
 function foo() {
@@ -53,6 +53,6 @@ But that's just because you've probably only ever worked on (or at least deeply 
 
 To be clear, JavaScript **does not, in fact, have dynamic scope**. It has lexical scope. Plain and simple. But the `this` mechanism is kind of like dynamic scope.
 
-The key contrast: **lexical scope is write-time, whereas dynamic scope (and `this`!) are runtime**. Lexical scope cares *where a function was declared*, but dynamic scope cares where a function was *called from*.
+The key contrast: **lexical scope is write-time, whereas dynamic scope (and `this`!) are runtime**. <span style="color:#AF7AC5">**Lexical scope cares *where a function was declared*, but dynamic scope cares where a function was *called from*.**</span>
 
 Finally: `this` cares *how a function was called*, which shows how closely related the `this` mechanism is to the idea of dynamic scoping. To dig more into `this`, read the title "*this & Object Prototypes*".

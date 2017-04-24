@@ -49,7 +49,7 @@ typeof a;				// "object"
 
 The return value from the `typeof` operator is always one of six (seven as of ES6! - the "symbol" type) string values. That is, `typeof "abc"` returns `"string"`, not `string`.
 
-Notice how in this snippet the `a` variable holds every different type of value, and that despite appearances, `typeof a` is not asking for the "type of `a`", but rather for the "type of the value currently in `a`." Only values have types in JavaScript; variables are just simple containers for those values.
+Notice how in this snippet the `a` variable holds every different type of value, and that despite appearances, `typeof a` is not asking for the "type of `a`", but rather for the "type of the value currently in `a`." <span style="color:#AF7AC5">**Only values have types in JavaScript; variables are just simple containers for those values.**</span>
 
 `typeof null` is an interesting case, because it errantly returns `"object"`, when you'd expect it to return `"null"`.
 
@@ -219,14 +219,14 @@ b;				// 42 -- the number!
 
 In Chapter 1, we briefly mentioned the "truthy" and "falsy" nature of values: when a non-`boolean` value is coerced to a `boolean`, does it become `true` or `false`, respectively?
 
-The specific list of "falsy" values in JavaScript is as follows:
+<span style="color:#AF7AC5">**The specific list of "falsy" values in JavaScript is as follows:**</span>
 
 * `""` (empty string)
 * `0`, `-0`, `NaN` (invalid `number`)
 * `null`, `undefined`
 * `false`
 
-Any value that's not on this "falsy" list is "truthy." Here are some examples of those:
+<span style="color:#AF7AC5">**Any value that's not on this "falsy" list is "truthy."**</span> Here are some examples of those:
 
 * `"hello"`
 * `42`
@@ -241,7 +241,7 @@ It's important to remember that a non-`boolean` value only follows this "truthy"
 
 There are four equality operators: `==`, `===`, `!=`, and `!==`. The `!` forms are of course the symmetric "not equal" versions of their counterparts; *non-equality* should not be confused with *inequality*.
 
-The difference between `==` and `===` is usually characterized that `==` checks for value equality and `===` checks for both value and type equality. However, this is inaccurate. The proper way to characterize them is that `==` checks for value equality with coercion allowed, and `===` checks for value equality without allowing coercion; `===` is often called "strict equality" for this reason.
+The difference between `==` and `===` is usually characterized that `==` checks for value equality and `===` checks for both value and type equality. However, this is inaccurate. <span style="color:#AF7AC5">**The proper way to characterize them is that `==` checks for value equality with coercion allowed, and `===` checks for value equality without allowing coercion; `===` is often called "strict equality" for this reason.**</span>
 
 Consider the implicit coercion that's allowed by the `==` loose-equality comparison and not allowed with the `===` strict-equality:
 
@@ -273,7 +273,7 @@ What these rules boil down to is requiring you to think critically about your co
 
 The `!=` non-equality form pairs with `==`, and the `!==` form pairs with `===`. All the rules and observations we just discussed hold symmetrically for these non-equality comparisons.
 
-You should take special note of the `==` and `===` comparison rules if you're comparing two non-primitive values, like `object`s (including `function` and `array`). Because those values are actually held by reference, both `==` and `===` comparisons will simply check whether the references match, not anything about the underlying values.
+You should take special note of the `==` and `===` comparison rules if you're comparing two non-primitive values, like `object`s (including `function` and `array`). <span style="color:#AF7AC5">**Because those values are actually held by reference, both `==` and `===` comparisons will simply check whether the references match, not anything about the underlying values.**</span>
 
 For example, `array`s are by default coerced to `string`s by simply joining all the values with commas (`,`) in between. You might think that two `array`s with the same contents would be `==` equal, but they're not:
 
@@ -293,7 +293,7 @@ a == b;		// false
 
 The `<`, `>`, `<=`, and `>=` operators are used for inequality, referred to in the specification as "relational comparison." Typically they will be used with ordinally comparable values like `number`s. It's easy to understand that `3 < 4`.
 
-But JavaScript `string` values can also be compared for inequality, using typical alphabetic rules (`"bar" < "foo"`).
+<span style="color:#AF7AC5">**But JavaScript `string` values can also be compared for inequality, using typical alphabetic rules (`"bar" < "foo"`).**</span>
 
 What about coercion? Similar rules as `==` comparison (though not exactly identical!) apply to the inequality operators. Notably, there are no "strict inequality" operators that would disallow coercion the same way `===` "strict equality" does.
 
@@ -310,7 +310,7 @@ b < c;		// true
 
 What happens here? In section 11.8.5 of the ES5 specification, it says that if both values in the `<` comparison are `string`s, as it is with `b < c`, the comparison is made lexicographically (aka alphabetically like a dictionary). But if one or both is not a `string`, as it is with `a < b`, then both values are coerced to be `number`s, and a typical numeric comparison occurs.
 
-The biggest gotcha you may run into here with comparisons between potentially different value types -- remember, there are no "strict inequality" forms to use -- is when one of the values cannot be made into a valid number, such as:
+The biggest gotcha you may run into here with comparisons between potentially different value types -- remember, there are no "strict inequality" forms to use -- is <span style="color:#AF7AC5">**when one of the values cannot be made into a valid number**</span>, such as:
 
 ```js
 var a = 42;
@@ -367,7 +367,7 @@ function foo() {
 console.log( a );	// 2
 ```
 
-**Warning:** It's not common or a good idea to rely on variable *hoisting* to use a variable earlier in its scope than its `var` declaration appears; it can be quite confusing. It's much more common and accepted to use *hoisted* function declarations, as we do with the `foo()` call appearing before its formal declaration.
+**Warning:** It's not common or a good idea to rely on variable *hoisting* to use a variable earlier in its scope than its `var` declaration appears; it can be quite confusing. <span style="color:#AF7AC5">**It's much more common and accepted to use *hoisted* function declarations**</span>, as we do with the `foo()` call appearing before its formal declaration.
 
 #### Nested Scopes
 
@@ -638,7 +638,7 @@ foo();
 
 As you can see, listing the `(function IIFE(){ .. })` before its executing `()` is essentially the same as including `foo` before its executing `()`; in both cases, the function reference is executed with `()` immediately after it.
 
-Because an IIFE is just a function, and functions create variable *scope*, using an IIFE in this fashion is often used to declare variables that won't affect the surrounding code outside the IIFE:
+Because an IIFE is just a function, and functions create variable *scope*, <span style="color:#AF7AC5">**using an IIFE in this fashion is often used to declare variables that won't affect the surrounding code outside the IIFE**</span>:
 
 ```js
 var a = 42;
@@ -769,7 +769,7 @@ Another very commonly misunderstood concept in JavaScript is the `this` identifi
 
 While it may often seem that `this` is related to "object-oriented patterns," in JS `this` is a different mechanism.
 
-If a function has a `this` reference inside it, that `this` reference usually points to an `object`. But which `object` it points to depends on how the function was called.
+<span style="color:#AF7AC5">**If a function has a `this` reference inside it, that `this` reference usually points to an `object`. But which `object` it points to depends on how the function was called.</span>
 
 It's important to realize that `this` *does not* refer to the function itself, as is the most common misconception.
 
@@ -814,7 +814,7 @@ Bottom line: to understand what `this` points to, you have to examine how the fu
 
 The prototype mechanism in JavaScript is quite complicated. We will only glance at it here. You will want to spend plenty of time reviewing Chapters 4-6 of the *this & Object Prototypes* title of this series for all the details.
 
-When you reference a property on an object, if that property doesn't exist, JavaScript will automatically use that object's internal prototype reference to find another object to look for the property on. You could think of this almost as a fallback if the property is missing.
+<span style="color:#AF7AC5">**When you reference a property on an object, if that property doesn't exist, JavaScript will automatically use that object's internal prototype reference to find another object to look for the property on.**</span> You could think of this almost as a fallback if the property is missing.
 
 The internal prototype reference linkage from one object to its fallback happens at the time the object is created. The simplest way to illustrate it is with a built-in utility called `Object.create(..)`.
 
@@ -941,7 +941,7 @@ The most common non-JavaScript JavaScript you'll encounter is the DOM API. For e
 var el = document.getElementById( "foo" );
 ```
 
-The `document` variable exists as a global variable when your code is running in a browser. It's not provided by the JS engine, nor is it particularly controlled by the JavaScript specification. It takes the form of something that looks an awful lot like a normal JS `object`, but it's not really exactly that. It's a special `object,` often called a "host object."
+<span style="color:#AF7AC5">**The `document` variable exists as a global variable when your code is running in a browser.**</span> It's not provided by the JS engine, nor is it particularly controlled by the JavaScript specification. It takes the form of something that looks an awful lot like a normal JS `object`, but it's not really exactly that. It's a special `object,` often called a "host object."
 
 Moreover, the `getElementById(..)` method on `document` looks like a normal JS function, but it's just a thinly exposed interface to a built-in method provided by the DOM from your browser. In some (newer-generation) browsers, this layer may also be in JS, but traditionally the DOM and its behavior is implemented in something more like C/C++.
 

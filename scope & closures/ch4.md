@@ -41,7 +41,7 @@ Unfortunately, both guesses are incorrect. `undefined` is the output.
 
 To answer this question, we need to refer back to Chapter 1, and our discussion of compilers. Recall that the *Engine* actually will compile your JavaScript code before it interprets it. Part of the compilation phase was to find and associate all declarations with their appropriate scopes. Chapter 2 showed us that this is the heart of Lexical Scope.
 
-So, the best way to think about things is that all declarations, both variables and functions, are processed first, before any part of your code is executed.
+So, the best way to think about things is that <span style="color:#AF7AC5">**all declarations, both variables and functions, are processed first, before any part of your code is executed.**</span>
 
 When you see `var a = 2;`, you probably think of that as one statement. But JavaScript actually thinks of it as two statements: `var a;` and `a = 2;`. The first statement, the declaration, is processed during the compilation phase. The second statement, the assignment, is left **in place** for the execution phase.
 
@@ -69,7 +69,7 @@ console.log( a );
 a = 2;
 ```
 
-So, one way of thinking, sort of metaphorically, about this process, is that variable and function declarations are "moved" from where they appear in the flow of the code to the top of the code. This gives rise to the name "Hoisting".
+So, one way of thinking, sort of metaphorically, about this process, is that <span style="color:#AF7AC5">**variable and function declarations are "moved" from where they appear in the flow of the code to the top of the code. This gives rise to the name "Hoisting".**</span>
 
 In other words, **the egg (declaration) comes before the chicken (assignment)**.
 
@@ -140,7 +140,7 @@ foo = function() {
 
 ## Functions First
 
-Both function declarations and variable declarations are hoisted. But a subtle detail (that *can* show up in code with multiple "duplicate" declarations) is that functions are hoisted first, and then variables.
+Both function declarations and variable declarations are hoisted. But a subtle detail (that *can* show up in code with multiple "duplicate" declarations) is that <span style="color:#AF7AC5">**functions are hoisted first, and then variables.**</span>
 
 Consider:
 
@@ -174,7 +174,7 @@ foo = function() {
 
 Notice that `var foo` was the duplicate (and thus ignored) declaration, even though it came before the `function foo()...` declaration, because function declarations are hoisted before normal variables.
 
-While multiple/duplicate `var` declarations are effectively ignored, subsequent function declarations *do* override previous ones.
+While multiple/duplicate `var` declarations are effectively ignored, <span style="color:#AF7AC5">**subsequent function declarations *do* override previous ones.**</span>
 
 ```js
 foo(); // 3
@@ -212,10 +212,10 @@ However, it's important to note that this behavior is not reliable and is subjec
 
 ## Review (TL;DR)
 
-We can be tempted to look at `var a = 2;` as one statement, but the JavaScript *Engine* does not see it that way. It sees `var a` and `a = 2` as two separate statements, the first one a compiler-phase task, and the second one an execution-phase task.
+We can be tempted to look at `var a = 2;` as one statement, but the JavaScript *Engine* does not see it that way. <span style="color:#AF7AC5">**It sees `var a` and `a = 2` as two separate statements, the first one a compiler-phase task, and the second one an execution-phase task.**</span>
 
 What this leads to is that all declarations in a scope, regardless of where they appear, are processed *first* before the code itself is executed. You can visualize this as declarations (variables and functions) being "moved" to the top of their respective scopes, which we call "hoisting".
 
-Declarations themselves are hoisted, but assignments, even assignments of function expressions, are *not* hoisted.
+<span style="color:#AF7AC5">**Declarations themselves are hoisted, but assignments, even assignments of function expressions, are *not* hoisted.**</span>
 
 Be careful about duplicate declarations, especially mixed between normal var declarations and function declarations -- peril awaits if you do!
