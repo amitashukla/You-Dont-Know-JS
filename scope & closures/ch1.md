@@ -41,7 +41,7 @@ For one thing, JavaScript engines don't get the luxury (like other language comp
 
 For JavaScript, the compilation that occurs happens, in many cases, mere microseconds (or less!) before the code is executed. To ensure the fastest performance, JS engines use all kinds of tricks (like JITs, which lazy compile and even hot re-compile, etc.) which are well beyond the "scope" of our discussion here.
 
-Let's just say, for simplicity's sake, that <span style="color:#AF7AC5">**any snippet of JavaScript has to be compiled before (usually *right* before!) it's executed**</span>. So, the JS compiler will take the program `var a = 2;` and compile it *first*, and then be ready to execute it, usually right away.
+Let's just say, for simplicity's sake, that **any snippet of JavaScript has to be compiled before (usually *right* before!) it's executed**. So, the JS compiler will take the program `var a = 2;` and compile it *first*, and then be ready to execute it, usually right away.
 
 ## Understanding Scope
 
@@ -55,7 +55,7 @@ Let's meet the cast of characters that interact to process the program `var a = 
 
 2. *Compiler*: one of *Engine*'s friends; handles all the dirty work of parsing and code-generation (see previous section).
 
-3. *Scope*: another friend of *Engine*; <span style="color:#AF7AC5">**collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.**</span>
+3. *Scope*: another friend of *Engine*; **collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.**
 
 For you to *fully understand* how JavaScript works, you need to begin to *think* like *Engine* (and friends) think, ask the questions they ask, and answer those questions the same.
 
@@ -77,7 +77,7 @@ A reasonable assumption would be that *Compiler* will produce code that could be
 
 If *Engine* eventually finds a variable, it assigns the value `2` to it. If not, *Engine* will raise its hand and yell out an error!
 
-<span style="color:#AF7AC5">**To summarize: two distinct actions are taken for a variable assignment: First, *Compiler* declares a variable (if not previously declared in the current scope), and second, when executing, *Engine* looks up the variable in *Scope* and assigns to it, if found.**</span>
+**To summarize: two distinct actions are taken for a variable assignment: First, *Compiler* declares a variable (if not previously declared in the current scope), and second, when executing, *Engine* looks up the variable in *Scope* and assigns to it, if found.**
 
 ### Compiler Speak
 
@@ -95,7 +95,7 @@ In other words, an LHS look-up is done when a variable appears on the left-hand 
 
 Actually, let's be a little more precise. An RHS look-up is indistinguishable, for our purposes, from simply a look-up of the value of some variable, whereas the LHS look-up is trying to find the variable container itself, so that it can assign. In this way, RHS doesn't *really* mean "right-hand side of an assignment" per se, it just, more accurately, means "not left-hand side".
 
-Being slightly glib for a moment, <span style="color:#AF7AC5">**you could also think "RHS" instead means "retrieve his/her source (value)", implying that RHS means "go get the value of...".</span>
+Being slightly glib for a moment, **you could also think "RHS" instead means "retrieve his/her source (value)", implying that RHS means "go get the value of...".
 
 Let's dig into that deeper.
 
@@ -228,7 +228,7 @@ So, revisiting the conversations between *Engine* and *Scope*, we'd overhear:
 
 > ***Scope***: "Yep, sure have. Here ya go."
 
-<span style="color:#AF7AC5">**The simple rules for traversing nested *Scope*: *Engine* starts at the currently executing *Scope*, looks for the variable there, then if not found, keeps going up one level, and so on. If the outermost global scope is reached, the search stops, whether it finds the variable or not.**</span>
+**The simple rules for traversing nested *Scope*: *Engine* starts at the currently executing *Scope*, looks for the variable there, then if not found, keeps going up one level, and so on. If the outermost global scope is reached, the search stops, whether it finds the variable or not.**
 
 ### Building on Metaphors
 
@@ -261,7 +261,7 @@ When the RHS look-up occurs for `b` the first time, it will not be found. This i
 
 If an RHS look-up fails to ever find a variable, anywhere in the nested *Scope*s, this results in a `ReferenceError` being thrown by the *Engine*. It's important to note that the error is of the type `ReferenceError`.
 
-By contrast, <span style="color:#AF7AC5">**if the *Engine* is performing an LHS look-up and arrives at the top floor (global *Scope*) without finding it, and if the program is not running in "Strict Mode" [^note-strictmode], then the global *Scope* will create a new variable of that name **in the global scope**, and hand it back to *Engine*.**</span>
+By contrast, **if the *Engine* is performing an LHS look-up and arrives at the top floor (global *Scope*) without finding it, and if the program is not running in "Strict Mode" [^note-strictmode], then the global *Scope* will create a new variable of that name **in the global scope**, and hand it back to *Engine*.**
 
 *"No, there wasn't one before, but I was helpful and created one for you."*
 
@@ -269,7 +269,7 @@ By contrast, <span style="color:#AF7AC5">**if the *Engine* is performing an LHS 
 
 Now, if a variable is found for an RHS look-up, but you try to do something with its value that is impossible, such as trying to execute-as-function a non-function value, or reference a property on a `null` or `undefined` value, then *Engine* throws a different kind of error, called a `TypeError`.
 
-<span style="color:#AF7AC5">**`ReferenceError` is *Scope* resolution-failure related, whereas `TypeError` implies that *Scope* resolution was successful, but that there was an illegal/impossible action attempted against the result.**</span>
+**`ReferenceError` is *Scope* resolution-failure related, whereas `TypeError` implies that *Scope* resolution was successful, but that there was an illegal/impossible action attempted against the result.**
 
 ## Review (TL;DR)
 
