@@ -5,7 +5,7 @@ In Chapter 1, we discarded various misconceptions about `this` and learned inste
 
 ## Call-site
 
-To understand `this` binding, we have to understand the call-site: the location in code where a function is called (**not where it's declared**). We must inspect the call-site to answer the question: what's *this* `this` a reference to?
+To understand `this` binding, we have to understand the **call-site: the location in code where a function is called(not where it's declared)**. We must inspect the call-site to answer the question: what's *this* `this` a reference to?
 
 Finding the call-site is generally: "go locate where a function is called from", but it's not always that easy, as certain coding patterns can obscure the *true* call-site.
 
@@ -66,7 +66,7 @@ var a = 2;
 foo(); // 2
 ```
 
-The first thing to note, if you were not already aware, is that variables declared in the global scope, as `var a = 2` is, are synonymous with global-object properties of the same name. They're not copies of each other, they *are* each other. Think of it as two sides of the same coin.
+The first thing to note, if you were not already aware, is that **variables declared in the global scope, as `var a = 2` is, are synonymous with global-object properties of the same name**. They're not copies of each other, they *are* each other. Think of it as two sides of the same coin.
 
 Secondly, we see that when `foo()` is called, `this.a` resolves to our global variable `a`. Why? Because in this case, the *default binding* for `this` applies to the function call, and so points `this` at the global object.
 
@@ -239,7 +239,7 @@ But, what if you want to force a function call to use a particular object for th
 
 "All" functions in the language have some utilities available to them (via their `[[Prototype]]` -- more on that later) which can be useful for this task. Specifically, functions have `call(..)` and `apply(..)` methods. Technically, JavaScript host environments sometimes provide functions which are special enough (a kind way of putting it!) that they do not have such functionality. But those are few. The vast majority of functions provided, and certainly all functions you will create, do have access to `call(..)` and `apply(..)`.
 
-How do these utilities work? They both take, as their first parameter, an object to use for the `this`, and then invoke the function with that `this` specified. Since you are directly stating what you want the `this` to be, we call it *explicit binding*.
+How do these utilities work? **They both take, as their first parameter, an object to use for the `this`, and then invoke the function with that `this` specified.** Since you are directly stating what you want the `this` to be, we call it *explicit binding*.
 
 Consider:
 
@@ -288,7 +288,7 @@ setTimeout( bar, 100 ); // 2
 bar.call( window ); // 2
 ```
 
-Let's examine how this variation works. We create a function `bar()` which, internally, manually calls `foo.call(obj)`, thereby forcibly invoking `foo` with `obj` binding for `this`. No matter how you later invoke the function `bar`, it will always manually invoke `foo` with `obj`. This binding is both explicit and strong, so we call it *hard binding*.
+Let's examine how this variation works. **We create a function `bar()` which, internally, manually calls `foo.call(obj)`, thereby forcibly invoking `foo` with `obj` binding for `this`.** No matter how you later invoke the function `bar`, it will always manually invoke `foo` with `obj`. This binding is both explicit and strong, so we call it *hard binding*.
 
 The most typical way to wrap a function with a *hard binding* creates a pass-thru of any arguments passed and any return value received:
 
@@ -353,7 +353,7 @@ var b = bar( 3 ); // 2 3
 console.log( b ); // 5
 ```
 
-`bind(..)` returns a new function that is hard-coded to call the original function with the `this` context set as you specified.
+**`bind(..)` returns a new function that is hard-coded to call the original function with the `this` context set as you specified.**
 
 **Note:** As of ES6, the hard-bound function produced by `bind(..)` has a `.name` property that derives from the original *target function*. For example: `bar = foo.bind(..)` should have a `bar.name` value of `"bound foo"`, which is the function call name that should show up in a stack trace.
 
@@ -398,7 +398,7 @@ For example, the `Number(..)` function acting as a constructor, quoting from the
 >
 > When Number is called as part of a new expression it is a constructor: it initialises the newly created object.
 
-So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: there's really no such thing as "constructor functions", but rather construction calls *of* functions.
+So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: **there's really no such thing as "constructor functions", but rather construction calls *of* functions.**
 
 When a function is invoked with `new` in front of it, otherwise known as a constructor call, the following things are done automatically:
 
