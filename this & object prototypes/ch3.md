@@ -723,7 +723,7 @@ The `in` operator will check to see if the property is *in* the object, or if it
 
 In that scenario, a more robust way of performing such a check is `Object.prototype.hasOwnProperty.call(myObject,"a")`, which borrows the base `hasOwnProperty(..)` method and uses *explicit `this` binding* (see Chapter 2) to apply it against our `myObject`.
 
-**Note:** The `in` operator has the appearance that it will check for the existence of a *value* inside a container, but it actually checks for the existence of a property name. This difference is important to note with respect to arrays, as the temptation to try a check like `4 in [2, 4, 6]` is strong, but this will not behave as expected.
+**Note:** **The `in` operator has the appearance that it will check for the existence of a *value* inside a container, but it actually checks for the existence of a property name.** This difference is important to note with respect to arrays, as the temptation to try a check like `4 in [2, 4, 6]` is strong, but this will not behave as expected.
 
 #### Enumeration
 
@@ -760,7 +760,7 @@ for (var k in myObject) {
 
 You'll notice that `myObject.b` in fact **exists** and has an accessible value, but it doesn't show up in a `for..in` loop (though, surprisingly, it **is** revealed by the `in` operator existence check). That's because "enumerable" basically means "will be included if the object's properties are iterated through".
 
-**Note:** `for..in` loops applied to arrays can give somewhat unexpected results, in that the enumeration of an array will include not only all the numeric indices, but also any enumerable properties. It's a good idea to use `for..in` loops *only* on objects, and traditional `for` loops with numeric index iteration for the values stored in arrays.
+**Note:** `for..in` loops applied to arrays can give somewhat unexpected results, in that the enumeration of an array will include not only all the numeric indices, but also any enumerable properties. **It's a good idea to use `for..in` loops *only* on objects, and traditional `for` loops with numeric index iteration for the values stored in arrays.**
 
 Another way that enumerable and non-enumerable properties can be distinguished:
 
@@ -790,7 +790,7 @@ Object.getOwnPropertyNames( myObject ); // ["a", "b"]
 
 `propertyIsEnumerable(..)` tests whether the given property name exists *directly* on the object and is also `enumerable:true`.
 
-`Object.keys(..)` returns an array of all enumerable properties, whereas `Object.getOwnPropertyNames(..)` returns an array of *all* properties, enumerable or not.
+**`Object.keys(..)` returns an array of all enumerable properties**, whereas `Object.getOwnPropertyNames(..)` returns an array of *all* properties, enumerable or not.
 
 Whereas `in` vs. `hasOwnProperty(..)` differ in whether they consult the `[[Prototype]]` chain or not, `Object.keys(..)` and `Object.getOwnPropertyNames(..)` both inspect *only* the direct object specified.
 
