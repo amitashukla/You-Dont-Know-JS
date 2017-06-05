@@ -400,7 +400,7 @@ For example, the `Number(..)` function acting as a constructor, quoting from the
 
 So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: **there's really no such thing as "constructor functions", but rather construction calls *of* functions.**
 
-When a function is invoked with `new` in front of it, otherwise known as a constructor call, the following things are done automatically:
+**When a function is invoked with `new` in front of it, otherwise known as a constructor call, the following things are done automatically**:
 
 1. a brand new object is created (aka, constructed) out of thin air
 2. *the newly constructed object is `[[Prototype]]`-linked*

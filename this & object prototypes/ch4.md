@@ -453,7 +453,7 @@ Another.greeting; // "Hello World"
 Another.count; // 1 (not shared state with `Something`)
 ```
 
-With `Something.cool.call( this )`, which can happen either in a "constructor" call (most common) or in a method call (shown here), we essentially "borrow" the function `Something.cool()` and call it in the context of `Another` (via its `this` binding; see Chapter 2) instead of `Something`. The end result is that the assignments that `Something.cool()` makes are applied against the `Another` object rather than the `Something` object.
+With `Something.cool.call( this )`, which can happen either in a "constructor" call (most common) or in a method call (shown here), **we essentially "borrow" the function `Something.cool()` and call it in the context of `Another` (via its `this` binding; see Chapter 2) instead of `Something`**. The end result is that the assignments that `Something.cool()` makes are applied against the `Another` object rather than the `Something` object.
 
 So, it is said that we "mixed in" `Something`s behavior with (or into) `Another`.
 
