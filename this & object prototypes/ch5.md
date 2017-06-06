@@ -423,7 +423,7 @@ a.myLabel(); // "obj a"
 
 **Note:** To understand why `this` points to `a` in the above code snippet, see Chapter 2.
 
-The important part is `Bar.prototype = Object.create( Foo.prototype )`. `Object.create(..)` *creates* a "new" object out of thin air, and links that new object's internal `[[Prototype]]` to the object you specify (`Foo.prototype` in this case).
+The important part is `Bar.prototype = Object.create( Foo.prototype )`. **`Object.create(..)` *creates* a "new" object out of thin air, and links that new object's internal `[[Prototype]]` to the object you specify** (`Foo.prototype` in this case).
 
 In other words, that line says: "make a *new* 'Bar dot prototype' object that's linked to 'Foo dot prototype'."
 
