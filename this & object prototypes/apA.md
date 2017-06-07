@@ -64,7 +64,7 @@ It's not all bubblegum and roses, though. There are still some deep and profound
 
 Firstly, the `class` syntax may convince you a new "class" mechanism exists in JS as of ES6. **Not so.** `class` is, mostly, just syntactic sugar on top of the existing `[[Prototype]]` (delegation!) mechanism.
 
-That means `class` is not actually copying definitions statically at declaration time the way it does in traditional class-oriented languages. If you change/replace a method (on purpose or by accident) on the parent "class", the child "class" and/or instances will still be "affected", in that they didn't get copies at declaration time, they are all still using the live-delegation model based on `[[Prototype]]`:
+**That means `class` is not actually copying definitions statically at declaration time the way it does in traditional class-oriented languages. If you change/replace a method (on purpose or by accident) on the parent "class", the child "class" and/or instances will still be "affected"**, in that they didn't get copies at declaration time, they are all still using the live-delegation model based on `[[Prototype]]`:
 
 ```js
 class C {
@@ -93,7 +93,7 @@ This only seems like reasonable behavior *if you already know* about the delegat
 
 Doesn't the ES6 `class` syntax **just make it harder** to see and understand the difference between traditional classes and delegated objects?
 
-`class` syntax *does not* provide a way to declare class member properties (only methods). So if you need to do that to track shared state among instances, then you end up going back to the ugly `.prototype` syntax, like this:
+**`class` syntax *does not* provide a way to declare class member properties (only methods)**. So if you need to do that to track shared state among instances, then you end up going back to the ugly `.prototype` syntax, like this:
 
 ```js
 class C {
@@ -125,7 +125,7 @@ c1.count === c2.count; // true
 
 The biggest problem here is that it betrays the `class` syntax by exposing (leakage!) `.prototype` as an implementation detail.
 
-But, we also still have the surprise gotcha that `this.count++` would implicitly create a separate shadowed `.count` property on both `c1` and `c2` objects, rather than updating the shared state. `class` offers us no consolation from that issue, except (presumably) to imply by lack of syntactic support that you shouldn't be doing that *at all*.
+But, we also still have the surprise gotcha that `this.count++` would implicitly create a separate shadowed `.count` property on both `c1` and `c2` objects, rather than updating the shared state. **`class` offers us no consolation from that issue, except (presumably) to imply by lack of syntactic support that you shouldn't be doing that *at all*.**
 
 Moreover, accidental shadowing is still a hazard:
 
@@ -187,7 +187,7 @@ E.foo(); // "P.foo"
 
 If you were thinking (quite reasonably!) that `super` would be bound dynamically at call-time, you might expect that `super()` would automatically recognize that `E` delegates to `D`, so `E.foo()` using `super()` should call to `D.foo()`.
 
-**Not so.** For performance pragmatism reasons, `super` is not *late bound* (aka, dynamically bound) like `this` is. Instead it's derived at call-time from `[[HomeObject]].[[Prototype]]`, where `[[HomeObject]]` is statically bound at creation time.
+**Not so.** For performance pragmatism reasons, **`super` is not *late bound* (aka, dynamically bound) like `this` is. Instead it's derived at call-time from `[[HomeObject]].[[Prototype]]`, where `[[HomeObject]]` is statically bound at creation time.**
 
 In this particular case, `super()` is still resolving to `P.foo()`, since the method's `[[HomeObject]]` is still `C` and `C.[[Prototype]]` is `P`.
 
