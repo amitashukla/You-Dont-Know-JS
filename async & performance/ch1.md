@@ -92,7 +92,7 @@ console.log( "Meaning of life:", answer );
 
 The *now* chunk runs right away, as soon as you execute your program. But `setTimeout(..)` also sets up an event (a timeout) to happen *later*, so the contents of the `later()` function will be executed at a later time (1,000 milliseconds from now).
 
-Any time you wrap a portion of code into a `function` and specify that it should be executed in response to some event (timer, mouse click, Ajax response, etc.), you are creating a *later* chunk of your code, and thus introducing asynchrony to your program.
+**Any time you wrap a portion of code into a `function` and specify that it should be executed in response to some event (timer, mouse click, Ajax response, etc.), you are creating a *later* chunk of your code, and thus introducing asynchrony to your program.**
 
 ### Async Console
 
@@ -120,7 +120,7 @@ We'd normally expect to see the `a` object be snapshotted at the exact moment of
 
 Most of the time, the preceding code will probably produce an object representation in your developer tools' console that's what you'd expect. But it's possible this same code could run in a situation where the browser felt it needed to defer the console I/O to the background, in which case it's *possible* that by the time the object is represented in the browser console, the `a.index++` has already happened, and it shows `{ index: 2 }`.
 
-It's a moving target under what conditions exactly `console` I/O will be deferred, or even whether it will be observable. Just be aware of this possible asynchronicity in I/O in case you ever run into issues in debugging where objects have been modified *after* a `console.log(..)` statement and yet you see the unexpected modifications show up.
+It's a moving target under what conditions exactly `console` I/O will be deferred, or even whether it will be observable. **Just be aware of this possible asynchronicity in I/O in case you ever run into issues in debugging where objects have been modified *after* a `console.log(..)` statement and yet you see the unexpected modifications show up.**
 
 **Note:** If you run into this rare scenario, the best option is to use breakpoints in your JS debugger instead of relying on `console` output. The next best option would be to force a "snapshot" of the object in question by serializing it to a `string`, like with `JSON.stringify(..)`.
 
@@ -183,7 +183,7 @@ So, in other words, your program is generally broken up into lots of small chunk
 
 ## Parallel Threading
 
-It's very common to conflate the terms "async" and "parallel," but they are actually quite different. Remember, async is about the gap between *now* and *later*. But parallel is about things being able to occur simultaneously.
+It's very common to conflate the terms "async" and "parallel," but they are actually quite different. Remember, **async is about the gap between *now* and *later*. But parallel is about things being able to occur simultaneously**.
 
 The most common tools for parallel computing are processes and threads. Processes and threads execute independently and may execute simultaneously: on separate processors, or even separate computers, but multiple threads can share the memory of a single process.
 
@@ -387,7 +387,7 @@ The first "process" will respond to `onscroll` events (making Ajax requests for 
 
 Obviously, if a user scrolls fast enough, you may see two or more `onscroll` events fired during the time it takes to get the first response back and process, and thus you're going to have `onscroll` events and Ajax response events firing rapidly, interleaved with each other.
 
-Concurrency is when two or more "processes" are executing simultaneously over the same period, regardless of whether their individual constituent operations happen *in parallel* (at the same instant on separate processors or cores) or not. You can think of concurrency then as "process"-level (or task-level) parallelism, as opposed to operation-level parallelism (separate-processor threads).
+**Concurrency is when two or more "processes" are executing simultaneously over the same period, regardless of whether their individual constituent operations happen *in parallel* (at the same instant on separate processors or cores) or not.** You can think of concurrency then as "process"-level (or task-level) parallelism, as opposed to operation-level parallelism (separate-processor threads).
 
 **Note:** Concurrency also introduces an optional notion of these "processes" interacting with each other. We'll come back to that later.
 
@@ -453,7 +453,7 @@ response 5
 response 7            <--- Process 2 finishes
 ```
 
-"Process 1" and "Process 2" run concurrently (task-level parallel), but their individual events run sequentially on the event loop queue.
+**"Process 1" and "Process 2" run concurrently (task-level parallel), but their individual events run sequentially on the event loop queue.**
 
 By the way, notice how `response 6` and `response 5` came back out of expected order?
 

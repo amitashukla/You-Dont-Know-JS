@@ -61,7 +61,7 @@ Without getting too much into the weeds here, the `var self = this` "solution" j
 
 People don't like writing verbose stuff, especially when they do it over and over again. So, a motivation of ES6 is to help alleviate these scenarios, and indeed, *fix* common idiom problems, such as this one.
 
-The ES6 solution, the arrow-function, introduces a behavior called "lexical this".
+The ES6 solution, **the arrow-function, introduces a behavior called "lexical this"**.
 
 ```js
 var obj = {
@@ -79,7 +79,7 @@ var obj = {
 obj.cool(); // awesome?
 ```
 
-The short explanation is that arrow-functions do not behave at all like normal functions when it comes to their `this` binding. They discard all the normal rules for `this` binding, and instead take on the `this` value of their immediate lexical enclosing scope, whatever it is.
+The short explanation is that **arrow-functions do not behave at all like normal functions when it comes to their `this` binding. They discard all the normal rules for `this` binding, and instead take on the `this` value of their immediate lexical enclosing scope, whatever it is.**
 
 So, in that snippet, the arrow-function doesn't get its `this` unbound in some unpredictable way, it just "inherits" the `this` binding of the `cool()` function (which is correct if we invoke it as shown!).
 

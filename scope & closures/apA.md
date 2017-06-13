@@ -26,7 +26,7 @@ bar();
 
 Lexical scope holds that the RHS reference to `a` in `foo()` will be resolved to the global variable `a`, which will result in value `2` being output.
 
-Dynamic scope, by contrast, doesn't concern itself with how and where functions and scopes are declared, but rather **where they are called from**. In other words, the scope chain is based on the call-stack, not the nesting of scopes in code.
+Dynamic scope, by contrast, doesn't concern itself with how and where functions and scopes are declared, but rather **where they are called from**. In other words, **the scope chain is based on the call-stack**, not the nesting of scopes in code.
 
 So, if JavaScript had dynamic scope, when `foo()` is executed, **theoretically** the code below would instead result in `3` as the output.
 
@@ -51,7 +51,7 @@ Strange? You're probably thinking so, at the moment.
 
 But that's just because you've probably only ever worked on (or at least deeply considered) code which is lexically scoped. So dynamic scoping seems foreign. If you had only ever written code in a dynamically scoped language, it would seem natural, and lexical scope would be the odd-ball.
 
-To be clear, JavaScript **does not, in fact, have dynamic scope**. It has lexical scope. Plain and simple. But the `this` mechanism is kind of like dynamic scope.
+To be clear, **JavaScript does not, in fact, have dynamic scope**. It has lexical scope. Plain and simple. But **the `this` mechanism is kind of like dynamic scope**.
 
 The key contrast: **lexical scope is write-time, whereas dynamic scope (and `this`!) are runtime**. **Lexical scope cares *where a function was declared*, but dynamic scope cares where a function was *called from*.**
 
