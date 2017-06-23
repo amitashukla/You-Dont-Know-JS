@@ -533,7 +533,7 @@ a++;
 
 Will this code print `0` (sync callback invocation) or `1` (async callback invocation)? Depends... on the conditions.
 
-You can see just how quickly the unpredictability of Zalgo can threaten any JS program. So the silly-sounding "never release Zalgo" is actually incredibly common and solid advice. Always be asyncing.
+You can see just how quickly the unpredictability of Zalgo can threaten any JS program. So the silly-sounding "never release Zalgo" is actually incredibly common and solid advice. **Always be asyncing**.
 
 What if you don't know whether the API in question will always execute async? You could invent a utility like this `asyncify(..)` proof-of-concept:
 
