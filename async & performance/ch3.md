@@ -1388,7 +1388,7 @@ Because only one promise wins, the fulfillment value is a single message, not an
 
 #### Timeout Race
 
-We saw this example earlier, illustrating how `Promise.race([ .. ])` can be used to express the "promise timeout" pattern:
+We saw this example earlier, illustrating how **`Promise.race([ .. ])` can be used to express the "promise timeout" pattern**:
 
 ```js
 // `foo()` is a Promise-aware function
