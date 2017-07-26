@@ -1584,9 +1584,9 @@ var p = new Promise( function(resolve,reject){
 } );
 ```
 
-`reject(..)` simply rejects the promise, but `resolve(..)` can either fulfill the promise or reject it, depending on what it's passed. If `resolve(..)` is passed an immediate, non-Promise, non-thenable value, then the promise is fulfilled with that value.
+`reject(..)` simply rejects the promise, but `resolve(..)` can either fulfill the promise or reject it, depending on what it's passed. **If `resolve(..)` is passed an immediate, non-Promise, non-thenable value, then the promise is fulfilled with that value.**
 
-But if `resolve(..)` is passed a genuine Promise or thenable value, that value is unwrapped recursively, and whatever its final resolution/state is will be adopted by the promise.
+**But if `resolve(..)` is passed a genuine Promise or thenable value, that value is unwrapped recursively, and whatever its final resolution/state is will be adopted by the promise.**
 
 ### Promise.resolve(..) and Promise.reject(..)
 
@@ -1668,7 +1668,7 @@ Promise.all( [p1,p2] )
 } );
 ```
 
-**Warning:** Be careful! If an empty `array` is passed to `Promise.all([ .. ])`, it will fulfill immediately, but `Promise.race([ .. ])` will hang forever and never resolve.
+**Warning:** Be careful! **If an empty `array` is passed to `Promise.all([ .. ])`, it will fulfill immediately, but `Promise.race([ .. ])` will hang forever and never resolve.**
 
 The ES6 `Promise` API is pretty simple and straightforward. It's at least good enough to serve the most basic of async cases, and is a good place to start when rearranging your code from callback hell to something better.
 
