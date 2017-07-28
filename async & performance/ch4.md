@@ -84,9 +84,9 @@ OK, there's quite a bit of new and potentially confusing stuff in those two code
 6. We inspect the value of `x` again, and it's now `3`.
 7. The final `it.next()` call resumes the `*foo()` generator from where it was paused, and runs the `console.log(..)` statement, which uses the current value of `x` of `3`.
 
-Clearly, `*foo()` started, but did *not* run-to-completion -- it paused at the `yield`. We resumed `*foo()` later, and let it finish, but that wasn't even required.
+Clearly, `*foo()` started, but did *not* run-to-completion -- **it paused at the `yield`**. We resumed `*foo()` later, and let it finish, but that wasn't even required.
 
-So, a generator is a special kind of function that can start and stop one or more times, and doesn't necessarily ever have to finish. While it won't be terribly obvious yet why that's so powerful, as we go throughout the rest of this chapter, that will be one of the fundamental building blocks we use to construct generators-as-async-flow-control as a pattern for our code.
+So, **a generator is a special kind of function that can start and stop one or more times, and doesn't necessarily ever have to finish.** While it won't be terribly obvious yet why that's so powerful, as we go throughout the rest of this chapter, that will be one of the fundamental building blocks we use to construct generators-as-async-flow-control as a pattern for our code.
 
 ### Input and Output
 
@@ -110,7 +110,7 @@ We now see a difference with how the generator is invoked compared to a normal f
 
 Instead, we're just creating an *iterator* object, which we assign to the variable `it`, to control the `*foo(..)` generator. Then we call `it.next()`, which instructs the `*foo(..)` generator to advance from its current location, stopping either at the next `yield` or end of the generator.
 
-The result of that `next(..)` call is an object with a `value` property on it holding whatever value (if anything) was returned from `*foo(..)`. In other words, `yield` caused a value to be sent out from the generator during the middle of its execution, kind of like an intermediate `return`.
+**The result of that `next(..)` call is an object with a `value` property on it holding whatever value (if anything) was returned from `*foo(..)`. In other words, `yield` caused a value to be sent out from the generator during the middle of its execution, kind of like an intermediate `return`.**
 
 Again, it won't be obvious yet why we need this whole indirect *iterator* object to control the generator. We'll get there, I *promise*.
 
@@ -184,7 +184,7 @@ res = it.next( 7 );		// pass `7` to waiting `yield`
 res.value;				// 42
 ```
 
-`yield ..` and `next(..)` pair together as a two-way message passing system **during the execution of the generator**.
+`yield ..` and `next(..)` pair together as a **two-way message passing** system **during the execution of the generator**.
 
 So, looking only at the *iterator* code:
 
