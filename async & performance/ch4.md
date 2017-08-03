@@ -40,7 +40,7 @@ Now let's twist your brain. What if `bar()` wasn't present, but it could still s
 
 In **preemptive** multithreaded languages, it would essentially be possible for `bar()` to "interrupt" and run at exactly the right moment between those two statements. But JS is not preemptive, nor is it (currently) multithreaded. And yet, a **cooperative** form of this "interruption" (concurrency) is possible, if `foo()` itself could somehow indicate a "pause" at that part in the code.
 
-**Note:** I use the word "cooperative" not only because of the connection to classical concurrency terminology (see Chapter 1), but because as you'll see in the next snippet, the ES6 syntax for indicating a pause point in code is `yield` -- suggesting a politely *cooperative* yielding of control.
+**Note:** I use the word "cooperative" not only because of the connection to classical concurrency terminology (see Chapter 1), but because as you'll see in the next snippet, **the ES6 syntax for indicating a pause point in code is `yield` -- suggesting a politely *cooperative* yielding of control**.
 
 Here's the ES6 code to accomplish such cooperative concurrency:
 
@@ -142,7 +142,7 @@ Inside `*foo(..)`, the `var y = x ..` statement starts to be processed, but then
 
 So, at this point, the assignment statement is essentially `var y = 6 * 7`. Now, `return y` returns that `42` value back as the result of the `it.next( 7 )` call.
 
-Notice something very important but also easily confusing, even to seasoned JS developers: depending on your perspective, there's a mismatch between the `yield` and the `next(..)` call. In general, you're going to have one more `next(..)` call than you have `yield` statements -- the preceding snippet has one `yield` and two `next(..)` calls.
+Notice something very important but also easily confusing, even to seasoned JS developers: depending on your perspective, there's a mismatch between the `yield` and the `next(..)` call. In general, you're going to have **one more `next(..)` call than you have `yield` statements** -- the preceding snippet has one `yield` and two `next(..)` calls.
 
 Why the mismatch?
 
@@ -413,7 +413,7 @@ gimmeSomething();		// 105
 
 Generating an arbitrary number series isn't a terribly realistic example. But what if you were generating records from a data source? You could imagine much the same code.
 
-In fact, this task is a very common design pattern, usually solved by iterators. An *iterator* is a well-defined interface for stepping through a series of values from a producer. The JS interface for iterators, as it is in most languages, is to call `next()` each time you want the next value from the producer.
+In fact, this task is a very common design pattern, usually solved by iterators. **An *iterator* is a well-defined interface for stepping through a series of values from a producer.** The JS interface for iterators, as it is in most languages, is to call `next()` each time you want the next value from the producer.
 
 We could implement the standard *iterator* interface for our number series producer:
 
@@ -505,7 +505,7 @@ The `for..of` loop asks `a` for its *iterator*, and automatically uses it to ite
 
 The `something` object in our running example is called an *iterator*, as it has the `next()` method on its interface. But a closely related term is *iterable*, which is an `object` that **contains** an *iterator* that can iterate over its values.
 
-As of ES6, the way to retrieve an *iterator* from an *iterable* is that the *iterable* must have a function on it, with the name being the special ES6 symbol value `Symbol.iterator`. When this function is called, it returns an *iterator*. Though not required, generally each call should return a fresh new *iterator*.
+**As of ES6, the way to retrieve an *iterator* from an *iterable* is that the *iterable* must have a function on it, with the name being the special ES6 symbol value `Symbol.iterator`.** When this function is called, it returns an *iterator*. Though not required, generally each call should return a fresh new *iterator*.
 
 `a` in the previous snippet is an *iterable*. The `for..of` loop automatically calls its `Symbol.iterator` function to construct an *iterator*. But we could of course call the function manually, and use the *iterator* it returns:
 
