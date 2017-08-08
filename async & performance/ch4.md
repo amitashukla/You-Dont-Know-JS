@@ -604,7 +604,7 @@ But there's a hidden behavior that takes care of that for you. "Abnormal complet
 
 While a `for..of` loop will automatically send this signal, you may wish to send the signal manually to an *iterator*; you do this by calling `return(..)`.
 
-If you specify a `try..finally` clause inside the generator, it will always be run even when the generator is externally completed. This is useful if you need to clean up resources (database connections, etc.):
+**If you specify a `try..finally` clause inside the generator, it will always be run even when the generator is externally completed. This is useful if you need to clean up resources** (database connections, etc.):
 
 ```js
 function *something() {
@@ -739,7 +739,7 @@ That's the magic! That's what allows us to have what appears to be blocking, syn
 
 In `yield foo(11,31)`, first the `foo(11,31)` call is made, which returns nothing (aka `undefined`), so we're making a call to request data, but we're actually then doing `yield undefined`. That's OK, because the code is not currently relying on a `yield`ed value to do anything interesting. We'll revisit this point later in the chapter.
 
-We're not using `yield` in a message passing sense here, only in a flow control sense to pause/block. Actually, it will have message passing, but only in one direction, after the generator is resumed.
+**We're not using `yield` in a message passing sense here, only in a flow control sense to pause/block.** Actually, it will have message passing, but only in one direction, after the generator is resumed.
 
 So, the generator pauses at the `yield`, essentially asking the question, "what value should I return to assign to the variable `text`?" Who's going to answer that question?
 
