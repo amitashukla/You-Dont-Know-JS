@@ -871,9 +871,9 @@ But here the Promise-aware `foo(..)` returns a promise after making the Ajax cal
 
 But what should the *iterator* do with the promise?
 
-It should listen for the promise to resolve (fulfillment or rejection), and then either resume the generator with the fulfillment message or throw an error into the generator with the rejection reason.
+**It should listen for the promise to resolve (fulfillment or rejection), and then either resume the generator with the fulfillment message or throw an error into the generator with the rejection reason**.
 
-Let me repeat that, because it's so important. The natural way to get the most out of Promises and generators is **to `yield` a Promise**, and wire that Promise to control the generator's *iterator*.
+Let me repeat that, because it's so important. **The natural way to get the most out of Promises and generators is **to `yield` a Promise**, and wire that Promise to control the generator's *iterator*.**
 
 Let's give it a try! First, we'll put the Promise-aware `foo(..)` together with the generator `*main()`:
 
