@@ -1211,7 +1211,7 @@ run( bar );
 
 We run `*foo()` inside of `*bar()` by using our `run(..)` utility again. We take advantage here of the fact that the `run(..)` we defined earlier returns a promise which is resolved when its generator is run to completion (or errors out), so if we `yield` out to a `run(..)` instance the promise from another `run(..)` call, it automatically pauses `*bar()` until `*foo()` finishes.
 
-But there's an even better way to integrate calling `*foo()` into `*bar()`, and it's called `yield`-delegation. The special syntax for `yield`-delegation is: `yield * __` (notice the extra `*`). Before we see it work in our previous example, let's look at a simpler scenario:
+But there's an even better way to integrate calling `*foo()` into `*bar()`, and it's called `yield`-delegation. **The special syntax for `yield`-delegation is: `yield * __` (notice the extra `*`).** Before we see it work in our previous example, let's look at a simpler scenario:
 
 ```js
 function *foo() {
@@ -1243,7 +1243,7 @@ it.next().value;	// `*foo()` finished
 
 How does the `yield *foo()` delegation work?
 
-First, calling `foo()` creates an *iterator* exactly as we've already seen. Then, `yield *` delegates/transfers the *iterator* instance control (of the present `*bar()` generator) over to this other `*foo()` *iterator*.
+First, calling `foo()` creates an *iterator* exactly as we've already seen. Then, **`yield *` delegates/transfers the *iterator* instance control (of the present `*bar()` generator) over to this other `*foo()` *iterator*.**
 
 So, the first two `it.next()` calls are controlling `*bar()`, but when we make the third `it.next()` call, now `*foo()` starts up, and now we're controlling `*foo()` instead of `*bar()`. That's why it's called delegation -- `*bar()` delegated its iteration control to `*foo()`.
 
